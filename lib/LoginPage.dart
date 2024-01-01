@@ -22,7 +22,6 @@ class _LoginPageState extends State<LoginPage> {
   TextEditingController _name = TextEditingController();
   TextEditingController _pass = TextEditingController();
   GlobalKey<FormState> _form = GlobalKey();
-
   Login() async {
     var url = "https://mobileprojecttt.000webhostapp.com/login.php";
     var res = await http.post(Uri.parse(url),
@@ -32,17 +31,17 @@ class _LoginPageState extends State<LoginPage> {
       var red = convert.jsonDecode(res.body);
       print(red);
       if (red['status'] == "success") {
-        pref.setString("id", red['userId']).then((value) {
-          print(pref.getString("id"));
-          ScaffoldMessenger.of(context)
-              .showSnackBar(SnackBar(content: Text("login")));
-          Navigator.of(context).push(MaterialPageRoute(builder: (builder) {
-            return HomePage();
-          }));
-        });
+        await pref.setString("id", red['userId']); // Use await here
+        print(await pref.getString("id")); // Use await here
+        ScaffoldMessenger.of(context)
+            .showSnackBar(SnackBar(content: Text("login")));
+        Navigator.of(context).push(MaterialPageRoute(builder: (builder) {
+          return HomePage();
+        }));
       }
     }
   }
+
 
   @override
   void initState() {

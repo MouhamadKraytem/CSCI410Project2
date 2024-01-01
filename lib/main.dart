@@ -19,11 +19,12 @@ class MyApp extends StatelessWidget {
   MyApp({Key? key}) : super(key: key);
   Future<Widget> getPage() async {
     String id = await pref.getString("id");
-    if (id != null || id.isNotEmpty) {
+    if (id == null || id.isEmpty) {
       // return AdminPage();
-      return HomePage();
-    } else {
+
       return LoginPage();
+    } else {
+      return HomePage();
     }
   }
 

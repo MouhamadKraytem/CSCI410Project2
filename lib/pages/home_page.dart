@@ -21,11 +21,18 @@ class _HomePageState extends State<HomePage> {
   bool isLoading = true;
 
   bool isCartLoading = true;
+  String idss ="";
+
+
+  void getPref()async{
+     idss = await pref.getString("id");
+  }
 
   void initState() {
     super.initState();
     loadCoffees();
     loadCartItems();
+    getPref();
   }
 
   void loadCoffees() async {
@@ -86,7 +93,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       backgroundColor: backgroundColor,
       appBar: AppBar(
-        title: Text("Hello ${pref.getString('id')}"),
+        title: Text("Hello $idss"),
         actions: [
           ElevatedButton(onPressed: (){
             pref.remove('id');
