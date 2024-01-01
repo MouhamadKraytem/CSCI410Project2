@@ -89,6 +89,8 @@ class _LoginPageState extends State<LoginPage> {
               ),
               SizedBox(
                 child: TextFormField(
+                  obscuringCharacter:  '*',
+                  obscureText: true,
                   controller: _pass,
                   decoration: InputDecoration(
                       border: OutlineInputBorder(), hintText: "Enter Password"),

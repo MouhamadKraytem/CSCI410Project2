@@ -93,7 +93,8 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       backgroundColor: backgroundColor,
       appBar: AppBar(
-        title: Text("Hello $idss"),
+        centerTitle: true,
+        title: Text("Welcome $idss"),
         actions: [
           ElevatedButton(onPressed: (){
             pref.remove('id');
