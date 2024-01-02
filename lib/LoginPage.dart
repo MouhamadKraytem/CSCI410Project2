@@ -22,6 +22,7 @@ class _LoginPageState extends State<LoginPage> {
   TextEditingController _name = TextEditingController();
   TextEditingController _pass = TextEditingController();
   GlobalKey<FormState> _form = GlobalKey();
+
   Login() async {
     var url = "https://mobileprojecttt.000webhostapp.com/login.php";
     var res = await http.post(Uri.parse(url),
@@ -32,13 +33,20 @@ class _LoginPageState extends State<LoginPage> {
       print(red);
       if (red['status'] == "success") {
         await pref.setString("id", red['userId']); // Use await here
+        await pref.setString("name", red['name']);
         print(await pref.getString("id")); // Use await here
+
         ScaffoldMessenger.of(context)
             .showSnackBar(SnackBar(content: Text("login")));
         Navigator.of(context).push(MaterialPageRoute(builder: (builder) {
           return HomePage();
         }));
+      }else{
+        ScaffoldMessenger.of(context)
+            .showSnackBar(SnackBar(content: Text("Invalide Username or passowrd")));
       }
+    }else{
+      print("connection error");
     }
   }
 

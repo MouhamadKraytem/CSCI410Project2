@@ -21,11 +21,11 @@ class _HomePageState extends State<HomePage> {
   bool isLoading = true;
 
   bool isCartLoading = true;
-  String idss ="";
+  String name ="";
 
 
   void getPref()async{
-     idss = await pref.getString("id");
+     name = await pref.getString("name");
   }
 
   void initState() {
@@ -44,8 +44,6 @@ class _HomePageState extends State<HomePage> {
     if (response.statusCode == 200) {
       setState(() {
         String res = response.body;
-
-        shop.clear();
 
         for (var row in jsonDecode(res)) {
           var s = Coffee(row['coffee_id'], row['coffee_name'],
@@ -94,7 +92,7 @@ class _HomePageState extends State<HomePage> {
       backgroundColor: backgroundColor,
       appBar: AppBar(
         centerTitle: true,
-        title: Text("Welcome $idss"),
+        title: Text("Welcome $name"),
         actions: [
           ElevatedButton(onPressed: (){
             pref.remove('id');

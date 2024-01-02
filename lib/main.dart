@@ -21,7 +21,6 @@ class MyApp extends StatelessWidget {
     String id = await pref.getString("id");
     if (id == null || id.isEmpty) {
       // return AdminPage();
-
       return LoginPage();
     } else {
       return HomePage();

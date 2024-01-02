@@ -10,15 +10,17 @@ class CoffeeShop extends ChangeNotifier {
     cart.add(coffee);
     notifyListeners();
 
-    String username = await pref.getString('userId');
-
+    String username = await pref.getString('id');
+    print(coffee.id);
+    print("====");
+    print(username);
     try {
       post(
         Uri.parse(
             'https://mobileprojecttt.000webhostapp.com/add_item_to_cart.php'),
         body: {
           'coffee_id': coffee.id,
-          'user_name': username,
+          'user_id': username,
         },
       );
     } catch (e) {
@@ -30,17 +32,20 @@ class CoffeeShop extends ChangeNotifier {
     cart.remove(coffee);
     notifyListeners();
 
-    String username = await pref.getString('userId');
-
+    String username = await pref.getString('id');
+    print(coffee.id);
+    print("====");
+    print(username);
     try {
       post(
         Uri.parse(
             'https://mobileprojecttt.000webhostapp.com/delete_item_from_cart.php'),
         body: {
           'coffee_id': coffee.id,
-          'user_name': username,
+          'user_id': username,
         },
       );
+      // print(res);
     } catch (e) {
       print('Error adding item to cart: $e');
     }
